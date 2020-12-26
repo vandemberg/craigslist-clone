@@ -10,6 +10,26 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="header">
+      <%= render "layouts/breadcrumb_nav", class: "inner" unless is_home? %>
+    </div>
+
+    <div class="main">
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+
+      <div class="main-left">
+        <p><strong><%= link_to "Craigslist Clone", root_path %></strong></p>
+
+        <%= render "categories/category_sidebar" if controller.controller_name == "categories" %>
+        <%= link_to "Create new post", new_post_path if controller.controller_name == "public" %><br />
+
+        <%= link_to "My Account", new_account_session_path unless account_signed_in? %>
+      </div>
+
+      <div class="main-right">
+        <%= yield %>
+      </div>
+    </>
   </body>
 </html>

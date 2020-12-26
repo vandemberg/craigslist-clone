@@ -1,7 +1,7 @@
 class PublicController < ApplicationController
 
   def home
-    @cateogries = Category.all
+    @cateogries = Category.where(parent_id: nil)
   end
 
 end
